@@ -347,21 +347,29 @@ async function sendMessage({ txtEl, btnEl, inner, messagesBox, history, rich }) 
     addTyping(inner, messagesBox);
 
     try {
-        const res = await fetch('http://localhost:3000/chat', {
+        const res = await fetch('https://api.chaingpt.org/chat/stream', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ messages: history })
+            headers: {
+                "Authorization": `Bearer 3daec896-fc06-4b85-897c-9875326451bd`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                model: "general_assistant",
+                question: msg,
+                chatHistory: "off"
+            })
         });
 
-        const data = await res.json();
+      const data = await res.text();
+
         removeTyping(inner.id);
 
-        const reply = data.reply || 'No response';
+        const reply = data || 'No response';
+
         history.push({ role: 'assistant', content: reply });
 
         if (rich) addRichMsg(inner, messagesBox, 'ai', reply);
         else addPlainMsg(inner, messagesBox, 'ai', reply);
-
     } catch (e) {
         removeTyping(inner.id);
         const errMsg = 'Error: ' + e.message;
