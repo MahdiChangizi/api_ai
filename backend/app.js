@@ -1,61 +1,51 @@
 import express from "express";
-import axios from "axios";
 import cors from "cors";
-import { exec } from "child_process";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 const API_URL = "https://api.chaingpt.org/chat";
-const API_KEY = '3daec896-fc06-4b85-897c-9875326451bd';
+const API_KEY = "3daec896-fc06-4b85-897c-9875326451bd";
 
 app.post("/chat", async (req, res) => {
- try {
-  const { messages } = req.body;
+  try {
+    const { messages } = req.body;
 
-  const lastMessage = messages[messages.length - 1].content;
-
-  const curlCommand = `
-  curl -s -X POST "${API_URL}" \
-  -H "Authorization: Bearer ${API_KEY}" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "general_assistant",
-    "question": "${lastMessage}",
-    "chatHistory": "off"
-  }'
-  `;
-
-  exec(curlCommand, (err, stdout, stderr) => {
-    if (err) {
-      return res.status(500).json({ reply: "curl error", error: err.message });
+    if (!messages || !messages.length) {
+      return res.status(400).json({ reply: "No messages" });
     }
 
-    try {
-      const data = JSON.parse(stdout);
+    const lastMessage = messages[messages.length - 1].content;
 
-      const reply =
-        data?.response ||
-        data?.answer ||
-        JSON.stringify(data);
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: "general_assistant",
+        question: lastMessage,
+        chatHistory: "off"
+      })
+    });
 
-      res.json({ reply });
+    const data = await response.json();
 
-    } catch (e) {
-      res.status(500).json({
-        reply: "Parse error",
-        error: stdout
-      });
-    }
-  });
+    const reply =
+      data?.response ||
+      data?.answer ||
+      JSON.stringify(data);
 
-} catch (error) {
-  res.status(500).json({
-    reply: "Server error",
-    error: error.message
-  });
-}
+    res.json({ reply });
+
+  } catch (error) {
+    res.status(500).json({
+      reply: "Server error",
+      error: error.message
+    });
+  }
 });
 
 app.listen(3000, () => {
