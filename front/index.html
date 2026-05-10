@@ -7,7 +7,6 @@
     <link rel="icon" type="image/png" href="./IMG_6805.PNG">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"> -->
     <style>
         /* ─── CSS VARIABLES ─── */
         :root {
@@ -73,8 +72,9 @@
             width: calc(100% - 48px);
             max-width: 1100px;
             z-index: 1000;
-            background: rgba(255,255,255,0.85);
+            background: rgba(255,255,255,0.92);
             backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
             border: 1px solid rgba(0,0,0,0.07);
             border-radius: 100px;
             padding: 8px 8px 8px 24px;
@@ -99,6 +99,7 @@
             color: var(--ink);
             text-decoration: none;
             letter-spacing: -0.01em;
+            flex-shrink: 0;
         }
 
         .logo img {
@@ -108,6 +109,7 @@
             object-fit: cover;
         }
 
+        /* Desktop nav links */
         .nav-links {
             display: flex;
             align-items: center;
@@ -145,6 +147,52 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
         }
 
+        /* ─── SIMPLE MOBILE NAV ─── */
+
+.mobile-chat-btn {
+    display: none;
+    text-decoration: none;
+    background: var(--ink);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.mobile-chat-btn:hover {
+    background: var(--ink-2);
+}
+
+@media (max-width: 900px) {
+
+    nav {
+        width: calc(100% - 20px);
+        top: 10px;
+        padding: 10px 14px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-chat-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .logo {
+        font-size: 1rem;
+    }
+
+    .logo img {
+        width: 32px;
+        height: 32px;
+    }
+}
+
         /* ─── HERO ─── */
         .hero {
             background: var(--surface);
@@ -153,7 +201,6 @@
             overflow: hidden;
         }
 
-        /* Mesh gradient orbs */
         .hero-orb {
             position: absolute;
             border-radius: 50%;
@@ -187,7 +234,6 @@
             50% { transform: translate(-60px, -40px) scale(1.08); }
         }
 
-        /* Dot grid */
         .hero-dots {
             position: absolute;
             inset: 0;
@@ -337,11 +383,7 @@
             margin-bottom: 14px;
         }
 
-        .code-dot {
-            width: 10px; height: 10px;
-            border-radius: 50%;
-        }
-
+        .code-dot { width: 10px; height: 10px; border-radius: 50%; }
         .code-dot-r { background: #ef4444; }
         .code-dot-y { background: #f59e0b; }
         .code-dot-g { background: #10b981; }
@@ -379,17 +421,8 @@
             font-size: 0.95rem;
         }
 
-        .float-gas {
-            top: -12px;
-            left: -12px;
-            animation: floatUp 3s ease-in-out infinite;
-        }
-
-        .float-security {
-            bottom: -12px;
-            right: -12px;
-            animation: floatUp 3s ease-in-out infinite 1.5s;
-        }
+        .float-gas { top: -12px; left: -12px; animation: floatUp 3s ease-in-out infinite; }
+        .float-security { bottom: -12px; right: -12px; animation: floatUp 3s ease-in-out infinite 1.5s; }
 
         @keyframes floatUp {
             0%,100% { transform: translateY(0); }
@@ -415,16 +448,6 @@
         .trust-bar {
             padding: 0 0 80px;
             overflow: hidden;
-        }
-
-        .trust-label {
-            text-align: center;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--muted-2);
-            font-weight: 600;
-            margin-bottom: 24px;
         }
 
         .marquee-wrap {
@@ -456,11 +479,7 @@
             white-space: nowrap;
         }
 
-        .trust-logo img {
-            width: 24px;
-            height: 24px;
-            object-fit: contain;
-        }
+        .trust-logo img { width: 24px; height: 24px; object-fit: contain; }
 
         /* ─── SECTION UTILITIES ─── */
         section { padding: 96px 24px; }
@@ -543,9 +562,7 @@
             transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
         }
 
-        .feature-card:hover .feature-icon-wrap {
-            transform: scale(1.1) rotate(-4deg);
-        }
+        .feature-card:hover .feature-icon-wrap { transform: scale(1.1) rotate(-4deg); }
 
         .feature-card.wide .feature-icon-wrap {
             background: rgba(255,255,255,0.1);
@@ -560,11 +577,7 @@
             letter-spacing: -0.02em;
         }
 
-        .feature-desc {
-            font-size: 0.875rem;
-            color: var(--muted);
-            line-height: 1.6;
-        }
+        .feature-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
 
         .feature-card.wide .feature-title { color: white; }
         .feature-card.wide .feature-desc { color: rgba(255,255,255,0.55); }
@@ -645,13 +658,8 @@
             letter-spacing: -0.01em;
         }
 
-        .step-desc {
-            font-size: 0.875rem;
-            color: var(--muted);
-            line-height: 1.6;
-        }
+        .step-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
 
-        /* Code window */
         .code-window {
             background: var(--ink);
             border-radius: var(--r-xl);
@@ -686,10 +694,7 @@
             border-radius: 6px;
         }
 
-        .code-body {
-            padding: 28px;
-            overflow-x: auto;
-        }
+        .code-body { padding: 28px; overflow-x: auto; }
 
         .code-body pre {
             font-family: var(--font-mono);
@@ -705,12 +710,7 @@
         .tok-num { color: #f78c6c; }
         .tok-type { color: #ffcb6b; }
 
-        .code-badges {
-            padding: 0 28px 24px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+        .code-badges { padding: 0 28px 24px; display: flex; gap: 10px; flex-wrap: wrap; }
 
         .code-badge {
             font-family: var(--font-mono);
@@ -787,10 +787,7 @@
         .delta-up { background: #d1fae5; color: #059669; }
         .delta-blue { background: var(--blue-dim); color: var(--blue); }
 
-        .analytics-chart-area {
-            margin-top: 24px;
-            height: 160px;
-        }
+        .analytics-chart-area { margin-top: 24px; height: 160px; }
 
         .chart-bars {
             display: flex;
@@ -818,12 +815,7 @@
         }
 
         .bar.active { background: var(--grad-hero); }
-
-        .bar-label {
-            font-family: var(--font-mono);
-            font-size: 0.62rem;
-            color: var(--muted-2);
-        }
+        .bar-label { font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted-2); }
 
         .activity-list { margin-top: 16px; }
 
@@ -839,12 +831,7 @@
         .activity-row:last-child { border-bottom: none; }
         .activity-row:hover { padding-left: 6px; }
 
-        .activity-dot {
-            width: 8px; height: 8px;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
+        .activity-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
         .dot-green { background: var(--green); box-shadow: 0 0 0 3px rgba(5,150,105,0.15); }
         .dot-blue { background: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }
         .dot-violet { background: var(--violet); box-shadow: 0 0 0 3px rgba(124,58,237,0.15); }
@@ -900,26 +887,10 @@
             background: white;
         }
 
-        .tcard-stars {
-            color: #f59e0b;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            margin-bottom: 16px;
-        }
+        .tcard-stars { color: #f59e0b; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 16px; }
+        .tcard-quote { font-size: 0.875rem; color: var(--ink-3); line-height: 1.7; font-weight: 300; margin-bottom: 24px; }
 
-        .tcard-quote {
-            font-size: 0.875rem;
-            color: var(--ink-3);
-            line-height: 1.7;
-            font-weight: 300;
-            margin-bottom: 24px;
-        }
-
-        .tcard-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .tcard-author { display: flex; align-items: center; gap: 12px; }
 
         .tcard-avatar {
             width: 40px; height: 40px;
@@ -935,16 +906,8 @@
             flex-shrink: 0;
         }
 
-        .tcard-name {
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--ink);
-        }
-
-        .tcard-role {
-            font-size: 0.75rem;
-            color: var(--muted-2);
-        }
+        .tcard-name { font-weight: 600; font-size: 0.9rem; color: var(--ink); }
+        .tcard-role { font-size: 0.75rem; color: var(--muted-2); }
 
         /* ─── CHAINS ─── */
         #chains { background: var(--surface); }
@@ -979,11 +942,7 @@
             box-shadow: 0 8px 24px rgba(37,99,235,0.1);
         }
 
-        .chain-pill img {
-            width: 24px;
-            height: 24px;
-            object-fit: contain;
-        }
+        .chain-pill img { width: 24px; height: 24px; object-fit: contain; }
 
         /* ─── CTA ─── */
         .cta-block {
@@ -1088,10 +1047,7 @@
             padding: 56px 24px 32px;
         }
 
-        .footer-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+        .footer-inner { max-width: 1100px; margin: 0 auto; }
 
         .footer-grid {
             display: grid;
@@ -1109,39 +1065,43 @@
             font-size: 1.1rem;
             color: var(--ink);
             margin-bottom: 12px;
+            text-decoration: none;
         }
 
-        .footer-logo img {
-            width: 32px; height: 32px;
-            border-radius: 8px;
-            object-fit: cover;
+        .footer-logo img { width: 32px; height: 32px; border-radius: 8px; object-fit: cover; }
+
+        .footer-brand-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; font-weight: 300; }
+
+        .footer-social {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
         }
 
-        .footer-brand-desc {
-            font-size: 0.85rem;
-            color: var(--muted);
-            line-height: 1.7;
-            font-weight: 300;
-        }
-
-        .footer-col-title {
-            font-family: var(--font-display);
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--ink);
-            margin-bottom: 16px;
-            letter-spacing: -0.01em;
-        }
-
-        .footer-col a {
-            display: block;
-            font-size: 0.85rem;
+        .footer-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--wire);
+            background: var(--wire-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
             color: var(--muted);
             text-decoration: none;
-            margin-bottom: 10px;
-            transition: color 0.2s;
+            transition: all 0.2s;
         }
 
+        .footer-social a:hover {
+            background: var(--ink);
+            color: white;
+            border-color: var(--ink);
+        }
+
+        .footer-col-title { font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; color: var(--ink); margin-bottom: 16px; letter-spacing: -0.01em; }
+
+        .footer-col a { display: block; font-size: 0.85rem; color: var(--muted); text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
         .footer-col a:hover { color: var(--ink); }
 
         .footer-bottom {
@@ -1152,7 +1112,22 @@
             border-top: 1px solid var(--wire);
             font-size: 0.8rem;
             color: var(--muted-2);
+            flex-wrap: wrap;
+            gap: 8px;
         }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-bottom-links a {
+            color: var(--muted-2);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-bottom-links a:hover { color: var(--ink); }
 
         /* ─── SCROLL REVEAL ─── */
         .sr {
@@ -1161,26 +1136,16 @@
             transition: opacity 0.7s ease, transform 0.7s ease;
         }
 
-        .sr.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
+        .sr.visible { opacity: 1; transform: translateY(0); }
         .sr-delay-1 { transition-delay: 0.1s; }
         .sr-delay-2 { transition-delay: 0.2s; }
         .sr-delay-3 { transition-delay: 0.3s; }
 
         /* ─── RESPONSIVE ─── */
         @media (max-width: 1024px) {
-            .hero-wrap {
-                grid-template-columns: 1fr;
-            }
-
+            .hero-wrap { grid-template-columns: 1fr; }
             .hero-content { max-width: 100%; }
-
-            .hero-visual {
-                display: none;
-            }
+            .hero-visual { display: none; }
         }
 
         @media (max-width: 900px) {
@@ -1190,124 +1155,79 @@
                 padding: 8px 8px 8px 18px;
             }
 
-            .nav-links a:not(.nav-cta) {
-                display: none;
-            }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
 
-            .nav-links .nav-cta {
-                display: flex;
-            }
+            .features-grid { grid-template-columns: 1fr 1fr; }
+            .feature-card.wide { grid-column: span 2; }
 
-            .features-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+            .steps-layout { grid-template-columns: 1fr; gap: 40px; }
+            .code-window { position: static; }
 
-            .feature-card.wide {
-                grid-column: span 2;
-            }
+            .analytics-grid { grid-template-columns: 1fr; }
 
-            .steps-layout {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
+            .testimonials-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
 
-            .code-window {
-                position: static;
-            }
-
-            .analytics-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 32px;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 8px;
-                text-align: center;
-            }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
         }
 
         @media (max-width: 640px) {
             section { padding: 64px 16px; }
 
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
+            .features-grid { grid-template-columns: 1fr; }
+            .feature-card.wide { grid-column: span 1; }
 
-            .feature-card.wide {
-                grid-column: span 1;
-            }
+            .hero-actions { flex-direction: column; }
+            .hero-actions button, .hero-actions a { width: 100%; justify-content: center; text-align: center; }
 
-            .hero-actions {
-                flex-direction: column;
-            }
+            .testimonials-grid { grid-template-columns: 1fr; }
 
-            .hero-actions button {
-                width: 100%;
-                justify-content: center;
-            }
+            .chains-grid { gap: 8px; }
+            .chain-pill { padding: 10px 16px; font-size: 0.8rem; }
 
-            .chains-grid {
-                gap: 8px;
-            }
+            .cta-actions { flex-direction: column; align-items: center; }
+            .btn-white, .btn-outline-white { width: 100%; max-width: 320px; justify-content: center; text-align: center; }
 
-            .chain-pill {
-                padding: 10px 16px;
-                font-size: 0.8rem;
-            }
+            .footer-grid { grid-template-columns: 1fr; gap: 24px; }
 
-            .cta-actions {
-                flex-direction: column;
-                align-items: center;
-            }
+            .analytics-main { padding: 20px; }
 
-            .btn-white, .btn-outline-white {
-                width: 100%;
-                max-width: 320px;
-                justify-content: center;
-                text-align: center;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
+            .chart-bars { gap: 3px; }
+            .bar-label { font-size: 0.55rem; }
         }
 
         @media (max-width: 400px) {
             nav { padding: 6px 6px 6px 14px; }
-
-            .hero-title {
-                font-size: 1.9rem;
-            }
+            .hero-title { font-size: 1.9rem; }
+            .logo { font-size: 1rem; }
+            .logo img { width: 30px; height: 30px; }
         }
+
+        /* Prevent scroll when drawer open */
+        body.drawer-open { overflow: hidden; }
     </style>
 </head>
 <body>
 
-<!-- ─── NAV ─── -->
+
+
 <nav id="nav">
     <a href="#" class="logo">
         <img src="./IMG_6805.PNG" alt="Leonis AI Logo">
         Leonis AI
     </a>
+
     <div class="nav-links">
         <a href="./chat.html">Chat</a>
         <a href="#features">Features</a>
         <a href="#how">How It Works</a>
         <a href="#analytics">Analytics</a>
         <a href="#testimonials">Reviews</a>
-        <a href="#" class="nav-cta">Get Started</a>
     </div>
+
+    <a href="./chat.html" class="mobile-chat-btn">
+        Chat
+    </a>
 </nav>
 
 <!-- ─── HERO ─── -->
@@ -1317,31 +1237,26 @@
     <div class="hero-orb hero-orb-2"></div>
 
     <div class="hero-wrap">
-        <!-- LEFT -->
         <div class="hero-content">
             <h1 class="hero-title">
                 Build smarter<br>
                 <span>contracts, faster.</span>
             </h1>
-
             <p class="hero-desc">
                 Ship secure smart contracts with speed and clarity.
                 From idea to deployment — all in one clean workflow.
             </p>
-
             <div class="hero-actions">
                 <button class="btn-primary">Start building →</button>
                 <button class="btn-ghost">See how it works</button>
             </div>
         </div>
 
-        <!-- RIGHT -->
         <div class="hero-visual">
             <div class="hero-badge-float float-gas">
                 <span>Gas Savings</span>
                 <strong>-32%</strong>
             </div>
-
             <div class="code-card">
                 <div class="code-header">
                     <span class="code-dot code-dot-r"></span>
@@ -1362,7 +1277,6 @@
   }
 }</pre>
             </div>
-
             <div class="hero-badge-float float-security">
                 <span>Security Score</span>
                 <strong>98 / 100</strong>
@@ -1385,7 +1299,6 @@
             <div class="trust-logo"><img src="https://cryptologos.cc/logos/avalanche-avax-logo.svg" alt="Avalanche"> Avalanche</div>
             <div class="trust-logo"><img src="https://cryptologos.cc/logos/bnb-bnb-logo.svg" alt="BNB Chain"> BNB Chain</div>
             <div class="trust-logo"><img src="https://cryptologos.cc/logos/arbitrum-arb-logo.svg" alt="Arbitrum"> Arbitrum</div>
-            <!-- Duplicate for seamless loop -->
             <div class="trust-logo"><img src="https://cryptologos.cc/logos/ethereum-eth-logo.svg" alt="Ethereum"> Ethereum</div>
             <div class="trust-logo"><img src="https://cryptologos.cc/logos/polygon-matic-logo.svg" alt="Polygon"> Polygon</div>
             <div class="trust-logo"><img src="https://cryptologos.cc/logos/solana-sol-logo.svg" alt="Solana"> Solana</div>
@@ -1663,22 +1576,22 @@
         </div>
     </div>
 </section>
-</style>
 
 <!-- ─── FOOTER ─── -->
 <footer>
     <div class="footer-inner">
         <div class="footer-grid">
             <div>
-                <div class="footer-logo">
+                <a href="#" class="footer-logo">
                     <img src="./IMG_6805.PNG" alt="Leonis AI Logo">
                     Leonis AI
-                </div>
+                </a>
                 <p class="footer-brand-desc">AI-powered infrastructure for the next generation of smart contract developers.</p>
+               
             </div>
             <div class="footer-col">
                 <div class="footer-col-title">Product</div>
-                <a href="#">Features</a>
+                <a href="#features">Features</a>
                 <a href="#">Security</a>
                 <a href="#">Pricing</a>
                 <a href="#">Roadmap</a>
@@ -1700,19 +1613,23 @@
         </div>
         <div class="footer-bottom">
             <span>© 2026 Leonis AI. All rights reserved.</span>
-            <span>Privacy · Terms · Security</span>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Security</a>
+            </div>
         </div>
     </div>
 </footer>
 
 <script>
-    // Nav scroll effect
+    // ─── Nav scroll effect ───
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
         nav.classList.toggle('scrolled', window.scrollY > 20);
     }, { passive: true });
 
-    // Scroll reveal
+    // ─── Scroll reveal ───
     const srEls = document.querySelectorAll('.sr');
     const observer = new IntersectionObserver(entries => {
         entries.forEach(e => {
@@ -1725,7 +1642,7 @@
 
     srEls.forEach(el => observer.observe(el));
 
-    // Step interaction
+    // ─── Step interaction ───
     const stepItems = document.querySelectorAll('.step-item');
     stepItems.forEach(item => {
         item.addEventListener('click', () => {
@@ -1734,7 +1651,7 @@
         });
     });
 
-    // Chart bars
+    // ─── Chart bars ───
     const heights = [35, 52, 44, 68, 58, 75, 62, 88, 72, 95, 80, 100];
     const months  = ['May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr'];
     const chartContainer = document.getElementById('chartBars');
@@ -1749,7 +1666,6 @@
         chartContainer.appendChild(col);
     });
 
-    // Animate bars in on scroll
     const chartObserver = new IntersectionObserver(entries => {
         if (entries[0].isIntersecting) {
             const bars = document.querySelectorAll('.bar');
